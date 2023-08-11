@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>CALCULATOR</h1>
+        <div>
+            <input v-model="Answer" type="number">
+        </div>
+        <div>
+            <button  @click.prevent="summation('M+')">M+</button>
+            <button @click.prevent="summation('MU')">MU</button>
+            <button @click.prevent="summation('%')">%</button>
+        </div>
+        <div>
+            <button  @click.prevent="summation('1')">1</button>
+            <button @click.prevent="summation('2')">2</button>
+            <button @click.prevent="summation('3')">3</button>
+        </div>
+        <div>
+            <button @click.prevent="summation('4')">4</button>
+            <button @click.prevent="summation('5')">5</button>
+            <button @click.prevent="summation('6')">6</button>
+        </div>
+        <div>
+            <button @click.prevent="summation('7')">7</button>
+            <button @click.prevent="summation('8')">8</button>
+            <button @click.prevent="summation('9')">9</button>
+        </div>
+        <div>
+            <button  @click.prevent="summation('00')">00</button>
+            <button @click.prevent="clearTimeout('CE/C')">CE/C</button>
+            <button @click.prevent="summation('.')">.</button>
+        </div>
+        <div>
+            <button @click.prevent="summation('0')">0</button>
+            <button @click.prevent="summation('+')">+</button>
+            <button @click.prevent="summation('-')">-</button>
+        </div>
+        <div>
+            <button @click.prevent="summation('/')">/</button>
+            <button @click.prevent="summation('x')">x</button>
+            <button @click.prevent="allInput()">=</button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+     <script>
+        let app = Vue.createApp({
+            data: function(){
+                return{
+                   Title: "Calculator",
+                   Answer: ""
+                }
+            },
+            methods: {
+                clearTimeout(){
+                    this.Answer=""
+                },
+                summation(additions){
+                        this.Answer +=additions
+                        
+                },
+            allInput(){
+                    try{this.Answer=eval(this.Answer)}
+                    catch(error){
+                        this.Answer="error"
+                    }
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
